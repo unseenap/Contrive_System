@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{description}}">
+  <meta name="theme-color" content="#0a1629">
+  <title>{{title}}</title>
+  <link rel="icon" type="image/png" href="assets/contrive-symbol.png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="site.js" defer></script>
+  {{homeAssets}}
+</head>
+<body{{bodyClass}}>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header>
+    <div class="topbar">
+      <div class="wrap topbar-inner">
+        <span>Contrive_System</span>
+        <a href="contact.html">Project enquiries <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <div class="wrap nav-row">
+      <a class="brand" href="index.html" aria-label="Contrive_System home">
+        <img class="brand-logo" src="assets/contrive-symbol.png" alt="" width="52" height="52">
+        <span><strong>Contrive<span>_</span>System</strong><small>ELECTRICAL CONTROL PANELS</small></span>
+      </a>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="navigation" aria-expanded="false" aria-label="Open navigation"><span></span><span></span><span></span></button>
+      <nav id="navigation" aria-label="Main navigation">
+        <a href="index.html" data-page="home">Home</a>
+        <a href="about.html" data-page="about">About Us</a>
+        <div class="nav-products">
+          <a href="products.html" data-page="products">Our Products</a>
+          <button type="button" id="products-toggle" aria-expanded="false" aria-controls="products-menu" aria-label="Show product categories">⌄</button>
+          <div class="products-menu" id="products-menu" hidden>{{productsMenu}}</div>
+        </div>
+        <a href="gallery.html" data-page="gallery">Our Gallery</a>
+        <a href="catalogue.html" data-page="catalogue">Catalogue</a>
+        <a href="blog.html" data-page="blog">Blog</a>
+        <a href="contact.html" data-page="contact">Contact</a>
+        <a class="small-screen-quote" href="quote.html" data-page="quote">Get a Quote</a>
+      </nav>
+      <a class="button header-quote" href="quote.html">Get a quote</a>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+{{content}}
+  </main>
+  <footer id="footer">{{footer}}
+  </footer>
+  <dialog id="image-dialog" aria-labelledby="image-caption">
+    <button type="button" class="dialog-close" aria-label="Close image">×</button>
+    <img alt="">
+    <p id="image-caption"></p>
+  </dialog>
+  {{compatibility}}
+</body>
+</html>
