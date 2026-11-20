@@ -7,6 +7,7 @@ import { footer, link } from '../src/templates/components.mjs';
 import { pages } from '../src/templates/pages.mjs';
 import { icon } from '../src/templates/icons.mjs';
 import { mobileNavigation } from '../src/templates/mobile-navigation.mjs';
+import { enhanceButtons } from '../src/templates/buttons.mjs';
 
 const projectRoot = new URL('../', import.meta.url);
 const template = readFileSync(new URL('src/templates/layout.html', projectRoot), 'utf8');
@@ -25,7 +26,6 @@ function writePage({ file, section, title, content, description, productId, isDe
     footer,
     productsMenu,
     mobileNavigation: mobileNavigation(section, productsMenu),
-    arrowIcon: icon('arrow-up-right'),
     dropdownIcon: icon('chevron-down'),
     closeIcon: icon('x'),
     bodyClass: isHome ? ' class="home-page"' : '',
@@ -36,7 +36,7 @@ function writePage({ file, section, title, content, description, productId, isDe
   if (!outputPath) throw new Error('Missing page path for ' + file);
   const outputUrl = new URL(outputPath, projectRoot);
   mkdirSync(new URL('./', outputUrl), { recursive: true });
-  writeFileSync(outputUrl, resolvePageLinks(html, outputPath), 'utf8');
+  writeFileSync(outputUrl, resolvePageLinks(enhanceButtons(html), outputPath), 'utf8');
 }
 
 for (const [section, file, title] of mainPages) {

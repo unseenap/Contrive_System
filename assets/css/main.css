@@ -49,11 +49,6 @@ p { color: var(--muted); }
 .button:hover { background: var(--blue-dark); }
 .text-link { color: var(--blue-dark); font-weight: 800; text-decoration: underline; text-underline-offset: .24em; }
 
-.topbar { color: white; background: linear-gradient(137deg, var(--blue) 0 65%, var(--deep) 65.1%); }
-.topbar-inner { min-height: 45px; display: grid; grid-template-columns: 80% 20%; align-items: center; }
-.topbar-inner > span { text-align: center; font-size: 1.06rem; font-weight: 800; }
-.topbar-inner > a { justify-self: end; font-size: .81rem; font-weight: 700; white-space: nowrap; }
-.topbar-inner > a span { margin-inline-start: 5px; color: var(--sky); }
 .nav-row { position: relative; z-index: 2; min-height: 78px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
 .brand { display: inline-flex; gap: 8px; align-items: center; flex-shrink: 0; line-height: 1; }
 .brand strong { display: block; letter-spacing: -.075em; font-size: 1.7rem; font-weight: 800; }
@@ -175,10 +170,6 @@ footer { color: white; background: var(--deep); }
 /* Shared spacing and navigation keep the catalogue and marketing pages coherent. */
 body { overflow-wrap: break-word; }
 header { background: #fff; }
-.topbar { background: var(--deep); }
-.topbar-inner { display: flex; justify-content: space-between; min-height: 35px; }
-.topbar-inner > span { font-size: .76rem; letter-spacing: .035em; }
-.topbar-inner > a { font-size: .76rem; }
 .nav-row { min-height: 82px; }
 .button { border-radius: 5px; text-transform: none; letter-spacing: 0; }
 .menu-toggle { border-radius: 5px; flex-shrink: 0; }
@@ -286,10 +277,6 @@ header { background: #fff; }
 }
 @media (max-width: 640px) {
   .wrap { width: calc(100% - 30px); }
-  .topbar { background: var(--blue); }
-  .topbar-inner { display: flex; justify-content: space-between; gap: 10px; min-height: 38px; }
-  .topbar-inner > span { font-size: .88rem; }
-  .topbar-inner > a { font-size: .72rem; }
   .nav-row { min-height: 72px; gap: 8px; }
   .brand { gap: 5px; }
   .brand-logo { width: 35px; height: 35px; }
@@ -360,7 +347,7 @@ body.mobile-sheet-open { overflow: hidden; }
 @media (max-width: 640px) {
   body { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
   .site-header, .site-header.is-hidden { position: relative; transform: none; pointer-events: auto; box-shadow: none; }
-  .site-header .topbar, .site-header .menu-toggle, .site-header .header-quote, #navigation { display: none !important; }
+  .site-header .menu-toggle, .site-header .header-quote, #navigation { display: none !important; }
   .site-header .nav-row { justify-content: center; }
   .mobile-dock {
     position: fixed;

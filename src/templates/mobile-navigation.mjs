@@ -6,10 +6,10 @@ function mobileNavigation(section, productLinks) {
   return `
     <!-- Mobile dock adapted from Uiverse.io by eslam-hany. -->
     <nav class="mobile-dock" aria-label="Mobile navigation">
-      <a href="index.html"${active('home')}>${icon('home')}<span>Home</span></a>
+      <a class="mobile-dock-link" href="index.html"${active('home')}>${icon('home')}<span>Home</span></a>
       <button type="button" data-mobile-panel="products" aria-haspopup="dialog" aria-controls="mobile-nav-sheet"${section === 'products' ? ' class="is-current"' : ''}>${icon('layout-grid')}<span>Products</span></button>
-      <a href="about.html"${active('about')}>${icon('info-circle')}<span>About</span></a>
-      <a href="contact.html"${active('contact')}>${icon('phone')}<span>Contact</span></a>
+      <a class="mobile-dock-link" href="about.html"${active('about')}>${icon('info-circle')}<span>About</span></a>
+      <a class="mobile-dock-link" href="contact.html"${active('contact')}>${icon('phone')}<span>Contact</span></a>
       <button type="button" data-mobile-panel="more" aria-haspopup="dialog" aria-controls="mobile-nav-sheet"${moreActive ? ' class="is-current"' : ''}>${icon('menu-2')}<span>More</span></button>
     </nav>
     <dialog class="mobile-nav-sheet" id="mobile-nav-sheet" aria-labelledby="mobile-sheet-title">

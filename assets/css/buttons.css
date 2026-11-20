@@ -1,0 +1,50 @@
+/* Adapted from Uiverse.io by doniaskima. Scoped to interactive buttons. */
+.btn-17 {
+  --btn-17-fill: #dceaff;
+  --btn-17-ink: #102b52;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-17 > * { position: relative; z-index: 1; }
+.btn-17-text-container { display: inline-flex; align-items: center; width: 100%; overflow: hidden; }
+.btn-17-text { display: inline-flex; width: 100%; align-items: center; justify-content: inherit; gap: inherit; }
+.home-button .btn-17-text { justify-content: space-between; gap: 18px; }
+.btn-17::before, .btn-17::after {
+  --skew: .2;
+  --progress: 0%;
+  content: "";
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 102%;
+  left: calc(-50% - 50% * var(--skew));
+  top: -104%;
+  background: var(--btn-17-fill);
+  pointer-events: none;
+  transform: skew(30deg) translateY(var(--progress));
+  transition: transform .25s ease;
+}
+.btn-17::after { left: calc(50% + 50% * var(--skew)); top: 102%; }
+.btn-17:not(:disabled):is(:hover, :focus-visible, :active) { color: var(--btn-17-ink); }
+.btn-17:not(:disabled):is(:hover, :focus-visible, :active)::before { --progress: 100%; }
+.btn-17:not(:disabled):is(:hover, :focus-visible, :active)::after { --progress: -102%; }
+.btn-17:not(:disabled):is(:hover, :focus-visible, :active) .btn-17-text { animation: btn-17-move-up .3s forwards; }
+.button.btn-17, .home-button.btn-17 { border-radius: 999px; }
+.button.btn-17 .btn-17-text { justify-content: center; }
+.gallery-card.btn-17 { --btn-17-fill: #e8f1ff; }
+.btn-17:disabled { cursor: default; opacity: .6; }
+.btn-17:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+.mobile-dock .btn-17:focus-visible { outline-color: white; outline-offset: -3px; }
+.menu-toggle.btn-17:is(:hover, :focus-visible, :active) span { background: var(--btn-17-ink); }
+@keyframes btn-17-move-up {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(90%); }
+  51% { transform: translateY(-90%); }
+  100% { transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-17::before, .btn-17::after { transition: none; }
+  .btn-17 .btn-17-text { animation: none !important; }
+}

@@ -17,6 +17,7 @@ const pagePaths = {
 const assetPaths = {
   'styles.css': 'assets/css/main.css',
   'home.css': 'assets/css/home.css',
+  'buttons.css': 'assets/css/buttons.css',
   'site.js': 'assets/js/main.js',
   'mobile-navigation.js': 'assets/js/mobile-navigation.js',
   'home.js': 'assets/js/home.js',
