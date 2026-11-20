@@ -27,9 +27,10 @@
       </a>
       <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="navigation" aria-expanded="false" aria-label="Open navigation"><span></span><span></span><span></span></button>
       <nav id="navigation" aria-label="Main navigation">
-        <a href="../../index.html" data-page="home">Home</a>
-        <a href="../about.html" data-page="about">About Us</a>
-        <div class="nav-products">
+        <!-- Outline interaction adapted from Uiverse.io by SelfMadeSystem. -->
+        <a class="nav-item" href="../../index.html" data-page="home">Home</a>
+        <a class="nav-item" href="../about.html" data-page="about">About Us</a>
+        <div class="nav-products nav-item">
           <a href="../products/index.html" data-page="products">Our Products</a>
           <button type="button" id="products-toggle" aria-expanded="false" aria-controls="products-menu" aria-label="Show product categories">⌄</button>
           <div class="products-menu" id="products-menu" hidden><a href="../products/apfc.html">Automatic Power Factor Correction (APFC) Panel</a>
@@ -62,11 +63,14 @@
             <a href="../products/plc.html">PLC Pane</a>
             <a href="../products/mcc-panel.html">MCC Panel</a></div>
         </div>
-        <a href="../gallery.html" data-page="gallery">Our Gallery</a>
-        <a href="../catalogue.html" data-page="catalogue">Catalogue</a>
-        <a href="index.html" data-page="blog" aria-current="location">Blog</a>
-        <a href="../contact.html" data-page="contact">Contact</a>
-        <a class="small-screen-quote" href="../quote.html" data-page="quote">Get a Quote</a>
+        <a class="nav-item" href="../gallery.html" data-page="gallery">Our Gallery</a>
+        <a class="nav-item" href="../catalogue.html" data-page="catalogue">Catalogue</a>
+        <a class="nav-item" href="index.html" data-page="blog" aria-current="location">Blog</a>
+        <a class="nav-item" href="../contact.html" data-page="contact">Contact</a>
+        <a class="nav-item small-screen-quote" href="../quote.html" data-page="quote">Get a Quote</a>
+        <svg class="nav-outline" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+          <rect class="nav-outline-rect" pathLength="100" x="1" y="1" width="0" height="0" fill="transparent" stroke-width="2"></rect>
+        </svg>
       </nav>
       <a class="button header-quote" href="../quote.html">Get a quote</a>
     </div>

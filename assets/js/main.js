@@ -84,6 +84,59 @@ mobileNavigation.addEventListener('change', () => {
 });
 setNavigation(false);
 
+// Measure each label so the Uiverse outline follows variable-width menu items.
+const outlineRectangle = navigation.querySelector('.nav-outline-rect');
+const navigationItems = [...navigation.querySelectorAll(':scope > .nav-item')];
+const activeNavigationItem = navigation.querySelector('[data-page][aria-current]')?.closest('.nav-item');
+let highlightedNavigationItem = activeNavigationItem;
+
+function drawNavigationOutline() {
+  if (mobileNavigation.matches) return;
+  const width = navigation.clientWidth - 2;
+  const height = navigation.clientHeight - 2;
+  outlineRectangle.setAttribute('width', String(width));
+  outlineRectangle.setAttribute('height', String(height));
+  if (!highlightedNavigationItem || width <= 0 || height <= 0) {
+    outlineRectangle.setAttribute('stroke-dasharray', '0 100');
+    return;
+  }
+  const navBounds = navigation.getBoundingClientRect();
+  const itemBounds = highlightedNavigationItem.getBoundingClientRect();
+  const start = Math.max(0, itemBounds.left - navBounds.left - 1);
+  const length = Math.min(itemBounds.width, width - start);
+  const bottomStart = width + height + width - start - length;
+  const perimeter = 2 * (width + height);
+  const segments = [0, start, length, bottomStart - start - length, length, perimeter - bottomStart - length];
+  outlineRectangle.setAttribute('stroke-dasharray', segments.map((segment) => (segment / perimeter * 100).toFixed(3)).join(' '));
+}
+
+function highlightNavigationItem(item) {
+  highlightedNavigationItem = item;
+  drawNavigationOutline();
+}
+
+for (const item of navigationItems) {
+  item.addEventListener('pointerenter', (event) => {
+    if (event.pointerType === 'mouse') highlightNavigationItem(item);
+  });
+  item.addEventListener('focusin', () => highlightNavigationItem(item));
+}
+navigation.addEventListener('pointerleave', () => {
+  const focusedItem = navigation.contains(document.activeElement) ? document.activeElement.closest('.nav-item') : null;
+  highlightNavigationItem(focusedItem ?? activeNavigationItem);
+});
+navigation.addEventListener('focusout', (event) => {
+  if (!navigation.contains(event.relatedTarget)) highlightNavigationItem(activeNavigationItem);
+});
+if ('ResizeObserver' in window) {
+  const outlineObserver = new ResizeObserver(drawNavigationOutline);
+  outlineObserver.observe(navigation);
+  navigationItems.forEach((item) => outlineObserver.observe(item));
+}
+document.fonts?.ready.then(drawNavigationOutline);
+mobileNavigation.addEventListener('change', () => highlightNavigationItem(activeNavigationItem));
+drawNavigationOutline();
+
 // A direction threshold prevents small touchpad movements from flickering the header.
 let scrollAnchor = Math.max(0, window.scrollY);
 let scrollFramePending = false;
