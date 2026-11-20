@@ -19,7 +19,8 @@ function syncRotation() {
   clearTimeout(rotationTimer);
   rotationControl.hidden = motionPreference.matches;
   rotationControl.setAttribute('aria-label', rotationPaused ? 'Play slide rotation' : 'Pause slide rotation');
-  rotationControl.querySelector('span').textContent = rotationPaused ? '▶' : 'Ⅱ';
+  rotationControl.querySelector('[data-play]').hidden = !rotationPaused;
+  rotationControl.querySelector('[data-pause]').hidden = rotationPaused;
 
   const rotating = !rotationPaused && !motionPreference.matches && !carouselHovered && carouselVisible && !document.hidden;
   featured.toggleAttribute('data-rotating', rotating);
@@ -122,7 +123,8 @@ function syncMarquee() {
 marqueeControl.addEventListener('click', () => {
   const paused = marquee.toggleAttribute('data-paused');
   marqueeControl.setAttribute('aria-label', paused ? 'Play industries marquee' : 'Pause industries marquee');
-  marqueeControl.querySelector('span').textContent = paused ? '▶' : 'Ⅱ';
+  marqueeControl.querySelector('[data-play]').hidden = !paused;
+  marqueeControl.querySelector('[data-pause]').hidden = paused;
 });
 motionPreference.addEventListener('change', syncMarquee);
 syncMarquee();

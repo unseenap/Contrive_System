@@ -1,3 +1,4 @@
+import { icon, playbackIcons } from './icons.mjs';
 import { productLookup, productImage } from '../content/products.mjs';
 import { facilities } from '../content/company.mjs';
 import { articles, postLink } from '../content/articles.mjs';
@@ -5,7 +6,7 @@ import { homeSlides, homeCategories, homeProducts } from '../content/home.mjs';
 import { link, photo, planningQuestions, quoteForm } from './components.mjs';
 
 function home() {
-  const arrow = '<span aria-hidden="true">↗</span>';
+  const arrow = '<span aria-hidden="true">' + icon('arrow-up-right') + '</span>';
   const industries = ['Industrial manufacturing', 'Commercial buildings', 'Infrastructure', 'Utilities', 'Building services'];
   const marqueeItems = industries.map((industry) => '<li>' + industry + '</li>').join('');
   return `
@@ -21,7 +22,7 @@ function home() {
               </div>`).join('')}
           </div>
           <div class="home-actions">
-            <a class="home-button home-button-primary" href="#product-range">Explore panels <span aria-hidden="true">↓</span></a>
+            <a class="home-button home-button-primary" href="#product-range">Explore panels ${icon("arrow-down")}</a>
             <a class="home-button home-button-quiet" href="#quote">Get a quote ${arrow}</a>
           </div>
         </div>
@@ -40,9 +41,9 @@ function home() {
           ${homeSlides.map(([id], index) => '<button class="home-slide-picker" type="button" data-feature-select="' + index + '" aria-label="Show ' + productLookup.get(id)[1] + '" aria-controls="featured-copy featured-panels"' + (index ? '' : ' aria-current="true"') + '><span aria-hidden="true"></span></button>').join('')}
         </div>
         <div class="home-slide-buttons">
-          <button type="button" class="home-icon-button" data-feature-rotation aria-label="Pause slide rotation"><span aria-hidden="true">Ⅱ</span></button>
-          <button type="button" class="home-icon-button" data-feature-step="-1" aria-label="Previous featured panel" aria-controls="featured-copy featured-panels">←</button>
-          <button type="button" class="home-icon-button" data-feature-step="1" aria-label="Next featured panel" aria-controls="featured-copy featured-panels">→</button>
+          <button type="button" class="home-icon-button" data-feature-rotation aria-label="Pause slide rotation">${playbackIcons()}</button>
+          <button type="button" class="home-icon-button" data-feature-step="-1" aria-label="Previous featured panel" aria-controls="featured-copy featured-panels">${icon("arrow-left")}</button>
+          <button type="button" class="home-icon-button" data-feature-step="1" aria-label="Next featured panel" aria-controls="featured-copy featured-panels">${icon("arrow-right")}</button>
         </div>
       </div>
       <p class="sr-only" id="feature-status" aria-live="polite"></p>
@@ -56,7 +57,7 @@ function home() {
             <ul aria-hidden="true">${marqueeItems}</ul>
           </div>
         </div>
-        <button type="button" class="home-marquee-control home-icon-button" aria-label="Pause industries marquee" hidden><span aria-hidden="true">Ⅱ</span></button>
+        <button type="button" class="home-marquee-control home-icon-button" aria-label="Pause industries marquee" hidden>${playbackIcons()}</button>
       </div>
     </section>
 

@@ -1,3 +1,4 @@
+import { icon } from './icons.mjs';
 import { products, productImage } from '../content/products.mjs';
 import { facilities, principles } from '../content/company.mjs';
 import { articles, postLink } from '../content/articles.mjs';
@@ -9,7 +10,7 @@ const button = (href, label) => '<a class="button" href="' + href + '">' + label
 
 function productCards(list) {
   return '<div class="product-grid">' + list.map(([id, title]) =>
-    '<a class="product-card" href="' + link(id) + '">' + photo(productImage(id)) + '<span>' + title + '<b aria-hidden="true">↗</b></span></a>'
+    '<a class="product-card" href="' + link(id) + '">' + photo(productImage(id)) + '<span>' + title + '<b aria-hidden="true">' + icon('arrow-up-right') + '</b></span></a>'
   ).join('') + '</div>';
 }
 
@@ -25,13 +26,13 @@ function profile() {
     '<p>Contrive_System focuses on electrical control panels, power distribution and industrial automation. Explore panel configurations for motor control, utility changeover, building services and process equipment.</p>' +
     button('about.html', 'Read more') + '</div>' +
     '<div class="profile-values">' + principles.map(([title, detail]) =>
-      '<article><span class="value-icon" aria-hidden="true">✓</span><div><h3>' + title + '</h3><p>' + detail + '</p></div></article>'
+      '<article><span class="value-icon" aria-hidden="true">' + icon('check') + '</span><div><h3>' + title + '</h3><p>' + detail + '</p></div></article>'
     ).join('') + '</div>';
 }
 
 function blogCards() {
   return '<div class="three-grid">' + articles.map(([title, image, detail], index) =>
-    '<article class="article-card">' + photo(image) + '<div><h3>' + title + '</h3><p>' + detail.split('. ')[0] + '.</p><a class="text-link" href="' + postLink(index) + '">Read article <span aria-hidden="true">↗</span></a></div></article>'
+    '<article class="article-card">' + photo(image) + '<div><h3>' + title + '</h3><p>' + detail.split('. ')[0] + '.</p><a class="text-link" href="' + postLink(index) + '">Read article <span aria-hidden="true">' + icon('arrow-up-right') + '</span></a></div></article>'
   ).join('') + '</div>';
 }
 
@@ -60,17 +61,17 @@ function planningQuestions() {
   return `<section class="planning-faq wrap" aria-labelledby="planning-title">
     <div><h2 id="planning-title">A clearer start to your project.</h2><p>Answers to the questions that come before a panel enquiry.</p></div>
     <div>
-      <details><summary>What should I include in a panel enquiry?</summary><p>Share the application, supply voltage, load schedule, installation location and delivery timeline. Add a single-line diagram or equipment list when available.</p></details>
-      <details><summary>How do I choose a panel family?</summary><p>Start with the load. MCC and VFD panels serve motor applications, PCC and distribution panels handle power distribution, and PLC panels bring process controls together. Explore each product page for the details to include in your brief.</p></details>
-      <details><summary>Can I enquire about an existing installation?</summary><p>Yes. Describe the existing panel, the change you are planning and any available drawings. Include the existing ratings, connected loads and space constraints.</p></details>
-      <details><summary>How do I save the product catalogue?</summary><p>Open the Catalogue page and choose Print / save as PDF. Use your browser’s save-to-PDF option to keep a copy.</p></details>
+      <details><summary>What should I include in a panel enquiry?<span class="faq-icons"><span class="faq-expand">${icon("plus")}</span><span class="faq-collapse">${icon("minus")}</span></span></summary><p>Share the application, supply voltage, load schedule, installation location and delivery timeline. Add a single-line diagram or equipment list when available.</p></details>
+      <details><summary>How do I choose a panel family?<span class="faq-icons"><span class="faq-expand">${icon("plus")}</span><span class="faq-collapse">${icon("minus")}</span></span></summary><p>Start with the load. MCC and VFD panels serve motor applications, PCC and distribution panels handle power distribution, and PLC panels bring process controls together. Explore each product page for the details to include in your brief.</p></details>
+      <details><summary>Can I enquire about an existing installation?<span class="faq-icons"><span class="faq-expand">${icon("plus")}</span><span class="faq-collapse">${icon("minus")}</span></span></summary><p>Yes. Describe the existing panel, the change you are planning and any available drawings. Include the existing ratings, connected loads and space constraints.</p></details>
+      <details><summary>How do I save the product catalogue?<span class="faq-icons"><span class="faq-expand">${icon("plus")}</span><span class="faq-collapse">${icon("minus")}</span></span></summary><p>Open the Catalogue page and choose Print / save as PDF. Use your browser’s save-to-PDF option to keep a copy.</p></details>
     </div>
   </section>`;
 }
 
 function inner(title, content) {
   return '<div class="page-banner"><div class="wrap"><h1>' + title +
-    '</h1><p><a href="index.html">Home</a> <span aria-hidden="true">›</span> ' + title + '</p></div></div>' + content;
+    '</h1><p><a href="index.html">Home</a> <span aria-hidden="true">' + icon('chevron-right') + '</span> ' + title + '</p></div></div>' + content;
 }
 
 const footer = `

@@ -84,6 +84,7 @@ Contrive_System/
 │   └── blog/                   Article listing and individual articles
 │
 └── assets/
+    ├── icons/                  Tabler SVG icons and MIT license
     ├── css/                    Shared and homepage styles
     ├── js/                     Shared and homepage interactions
     └── images/
@@ -129,6 +130,8 @@ CSS, JavaScript, and image assets are used directly. Refresh the browser after e
 - The enquiry form downloads a project brief. Direct delivery requires a company contact address or a submission service.
 - Equipment and facility imagery is illustrative.
 - Company contact details, certifications, and testimonials can be added when supplied.
+
+Interface icons use [Tabler Icons](https://github.com/tabler/tabler-icons), with the MIT license included in [assets/icons/LICENSE](assets/icons/LICENSE).
 
 ---
 

@@ -5,6 +5,8 @@ import { pagePaths, resolvePageLinks } from '../src/config/paths.mjs';
 import { sectionDescriptions, mainPages } from '../src/config/pages.mjs';
 import { footer, link } from '../src/templates/components.mjs';
 import { pages } from '../src/templates/pages.mjs';
+import { icon } from '../src/templates/icons.mjs';
+import { mobileNavigation } from '../src/templates/mobile-navigation.mjs';
 
 const projectRoot = new URL('../', import.meta.url);
 const template = readFileSync(new URL('src/templates/layout.html', projectRoot), 'utf8');
@@ -22,6 +24,10 @@ function writePage({ file, section, title, content, description, productId, isDe
     content,
     footer,
     productsMenu,
+    mobileNavigation: mobileNavigation(section, productsMenu),
+    arrowIcon: icon('arrow-up-right'),
+    dropdownIcon: icon('chevron-down'),
+    closeIcon: icon('x'),
     bodyClass: isHome ? ' class="home-page"' : '',
     homeAssets: isHome ? '<link rel="stylesheet" href="home.css">\n  <script src="home.js" defer></script>' : '',
     compatibility: isHome ? '<script id="legacy-articles" type="application/json">' + legacyArticles + '</script>' : '',

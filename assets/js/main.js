@@ -143,6 +143,12 @@ let scrollFramePending = false;
 
 function updateScrollHeader() {
   scrollFramePending = false;
+  if (matchMedia('(max-width: 640px)').matches) {
+    siteHeader.classList.remove('is-hidden');
+    siteHeader.classList.remove('is-scrolled');
+    scrollAnchor = Math.max(0, window.scrollY);
+    return;
+  }
   const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
   const position = Math.min(maxScroll, Math.max(0, window.scrollY));
   const movement = position - scrollAnchor;

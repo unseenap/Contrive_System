@@ -18,6 +18,7 @@ const assetPaths = {
   'styles.css': 'assets/css/main.css',
   'home.css': 'assets/css/home.css',
   'site.js': 'assets/js/main.js',
+  'mobile-navigation.js': 'assets/js/mobile-navigation.js',
   'home.js': 'assets/js/home.js',
   'assets/contrive-symbol.png': 'assets/images/brand/contrive-symbol.png',
 };

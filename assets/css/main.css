@@ -19,6 +19,12 @@
 body { margin: 0; background: var(--white); color: var(--ink); font-size: 16px; line-height: 1.6; }
 [hidden] { display: none !important; }
 img { display: block; width: 100%; }
+.icon { display: inline-block; width: 1.15rem; height: 1.15rem; vertical-align: -.2em; flex-shrink: 0; stroke-width: 1.8; }
+.playback-icons, .playback-icons > span { display: inline-flex; align-items: center; justify-content: center; }
+.home-icon-button .icon, .dialog-close .icon { width: 1.25rem; height: 1.25rem; }
+.dialog-close { display: grid; place-items: center; }
+#products-toggle .icon { width: 1rem; height: 1rem; transition: transform .2s ease; }
+#products-toggle[aria-expanded="true"] .icon { transform: rotate(180deg); }
 a { color: inherit; text-decoration: none; }
 button, input, textarea { font: inherit; }
 button { cursor: pointer; }
@@ -203,8 +209,10 @@ header { background: #fff; }
 .planning-faq details { border-bottom: 1px solid var(--line); }
 .planning-faq summary { display: flex; justify-content: space-between; gap: 20px; padding-block: 19px; cursor: pointer; font-weight: 800; line-height: 1.35; list-style: none; }
 .planning-faq summary::-webkit-details-marker { display: none; }
-.planning-faq summary::after { content: "+"; color: var(--blue); flex-shrink: 0; }
-.planning-faq details[open] summary::after { content: "−"; }
+.faq-icons { color: var(--blue); flex-shrink: 0; }
+.faq-collapse { display: none; }
+.planning-faq details[open] .faq-expand { display: none; }
+.planning-faq details[open] .faq-collapse { display: inline; }
 .planning-faq details p { padding-bottom: 20px; max-width: 64ch; }
 .specification-note { display: flex; align-items: center; gap: 35px; justify-content: space-between; border-top: 1px solid var(--line); padding-block: 32px 48px; }
 .specification-note h2 { font-size: 1.45rem; letter-spacing: -.035em; }
@@ -322,7 +330,94 @@ header { background: #fff; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; }
 }
+.mobile-dock { display: none; }
+body.mobile-sheet-open { overflow: hidden; }
+#mobile-nav-sheet {
+  position: fixed;
+  inset: auto 0 calc(94px + env(safe-area-inset-bottom));
+  margin: 0 auto;
+  width: min(440px, calc(100% - 24px));
+  max-width: none;
+  max-height: calc(100dvh - 126px - env(safe-area-inset-bottom));
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  color: var(--ink);
+  box-shadow: 0 18px 60px #06152f40;
+}
+#mobile-nav-sheet[open] { animation: mobile-sheet-enter .22s ease-out; }
+#mobile-nav-sheet::backdrop { background: #07162b8f; }
+.mobile-sheet-heading { position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; gap: 12px; background: white; padding: 14px 16px; border-bottom: 1px solid var(--line); z-index: 1; }
+.mobile-sheet-heading h2 { font-size: 1.1rem; letter-spacing: -.03em; }
+.mobile-sheet-heading button { display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 50%; background: var(--soft); color: var(--ink); }
+.mobile-sheet-feature { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin: 12px; padding: 13px; border-radius: 7px; background: var(--blue); color: white; font-weight: 800; }
+.mobile-sheet-links { padding: 0 12px 12px; }
+.mobile-sheet-links a { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 47px; padding: 11px; border-bottom: 1px solid var(--line); font-size: .92rem; font-weight: 700; }
+.mobile-sheet-links a:hover, .mobile-sheet-links a[aria-current] { background: var(--soft); color: var(--blue-dark); border-radius: 6px; }
+@keyframes mobile-sheet-enter { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 640px) {
+  body { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+  .site-header, .site-header.is-hidden { position: relative; transform: none; pointer-events: auto; box-shadow: none; }
+  .site-header .topbar, .site-header .menu-toggle, .site-header .header-quote, #navigation { display: none !important; }
+  .site-header .nav-row { justify-content: center; }
+  .mobile-dock {
+    position: fixed;
+    inset: auto 12px calc(12px + env(safe-area-inset-bottom));
+    z-index: 25;
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    max-height: none;
+    overflow: visible;
+    width: min(420px, calc(100% - 24px));
+    min-height: 69px;
+    margin-inline: auto;
+    padding: 5px;
+    gap: 2px;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid #7eb4ff4d;
+    border-radius: 15px;
+    background: #104a98;
+    box-shadow: 0 6px 22px #061b4240;
+  }
+  .mobile-dock > a, .mobile-dock > button {
+    display: flex;
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 56px;
+    padding: 6px 2px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: white;
+    font-size: .64rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+    transition: transform .2s ease, background .2s ease;
+  }
+  .mobile-dock .icon { width: 22px; height: 22px; }
+  .mobile-dock > a[aria-current], .mobile-dock > .is-current,
+  .mobile-dock > button[aria-expanded="true"] { background: #ffffff26; color: white; }
+  .mobile-dock > a:hover, .mobile-dock > button:hover { background: #ffffff1c; color: white; transform: translateY(-2px); }
+  .mobile-dock :focus-visible { outline-color: white; outline-offset: -3px; }
+  [id] { scroll-margin-bottom: calc(100px + env(safe-area-inset-bottom)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #mobile-nav-sheet[open] { animation: none; }
+}
 @media print {
+  .mobile-dock, #mobile-nav-sheet { display: none !important; }
+  body { padding-bottom: 0; }
   header, footer, #print-catalogue, .page-banner p, .intro { display: none !important; }
   .page-banner { padding: 0; background: white; color: black; }
   .page-banner h1 { font-size: 24pt; }
